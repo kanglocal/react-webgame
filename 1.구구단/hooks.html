@@ -1,0 +1,138 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>구구단</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // :: 함수 컴포넌드. functional Component. (새로생긴거 아님)
+        // :: setState, ref할 필요가 없을 때 사용하는 컴포넌트.
+        // const GuGuDan = () => {
+        //         return <div>Hello, Hooks</div>;
+        // }
+
+        // :: 함수컴포넌트를 사용하다가, 여기에서도 seState와 ref 를 할 수 있게
+        // :: 해달라는 요청으로 인해 hooks가 생겨난다.
+        // :: useState 안에 들어있는것은 초기값.
+        // :: 이 상태에서는 state값을 바꿀 경우, 함수 전체가 다시실행되기때문에
+        // :: 속도가 class를 쓸 때보다도 더 느릴 수 있다. >> 최적화 방법은?? 없나봄.
+        const GuGuDan = () => {
+            const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+            const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+            const [value, setValue] = React.useState('');
+            const [result, setResult] = React.useState('');
+            const inputRef = React.useRef(null);// :: null자리는 초기값 넣는 자리.
+
+            const onChangeInput = (e) => {
+                setValue(e.target.value);
+            };
+
+            const onSubmitForm = (e) => {
+                e.preventDefault();
+                if(parseInt(value) === first * second) {
+                    setResult((prevResult) => {
+                        return '정답: ' + value
+                    });
+                    setFirst(Math.ceil(Math.random() * 9));
+                    setSecond(Math.ceil(Math.random() * 9));
+                    setValue('');
+                    inputRef.current.focus();// :: 돔에 접근할때에는 current 를 써줘야한다.
+                } else {
+                    setResult('땡');
+                    setValue('');
+                    inputRef.current.focus();
+                }
+            };
+            console.log('렌더링');
+            // :: html 을 return시 주의점
+            // :: class 못 씀.( 컴포넌트클래스와 html속성 class구분불가로, className을 사용)
+            // :: onclick, onsubmit 같은것 onClick,onSubmit 으로 카멜표기법으로 작성.
+            // :: (카멜표기법으로 작성하는것은 react여서가 아니고 자바스크립트로 리턴할때는 이래야하는것인가봄.)
+            // :: label에 쓰이는 for 은 htmlFor 로 써야한다.
+
+            return (
+                <React.Fragment>
+                    <div>{first} 곱하기 {second} 는?</div>
+                    <form onSubmit={onSubmitForm}>
+                        <input ref={inputRef} onChange={onChangeInput} value={value}/>
+                        <button>입력!</button>
+                    </form>
+                    <div>{result}</div>
+                </React.Fragment>
+            );
+        }
+
+        // :: class 는 옛날 버전!! 최신버전은 hooks 를 사용한다.
+        // class GuGuDan extends React.Component {
+        //     constructor(props) {
+        //         super(props);
+        //         this.state = {
+        //             first: Math.ceil(Math.random() * 9),
+        //             second: Math.ceil(Math.random() * 9),
+        //             value: '',
+        //             result: '',
+        //         };
+        //     }
+
+        //     onSubmit = (e) => {
+        //         e.preventDefault();
+        //         if (parseInt(this.state.value) === this.state.first * this.state.second) {
+        //             this.setState((prevState) => {
+        //                 return {
+        //                     result: prevState.value + ' 정답',
+        //                     first: Math.ceil(Math.random() * 9),
+        //                     second: Math.ceil(Math.random() * 9),
+        //                     value: '',
+        //                 }
+        //             });
+        //         } else {
+        //             this.setState({
+        //                 result: '땡',
+        //                 value: '',
+        //             });
+        //         }
+        //         this.valueInput.focus();
+        //     }
+
+        //     onChange = (e) => {
+        //         this.setState({ value: e.target.value });
+        //     }
+
+        //     valueInput;
+
+        //     onRefInput = (c) => { this.valueInput = c; }
+
+        //     render() {
+        //         console.log("렌더링");
+        //         // setState 할때마다 reder 함수 실행되는데, render는 많이되면 시간이 오래걸린다.
+        //         // 따라서 최적화할것 생각해야한다
+        //         return (
+        //             <React.Fragment>
+        //                 <div>{this.state.first} 곱하기 {this.state.second} 는?</div>
+        //                 <form onSubmit={this.onSubmit}>
+        //                     <input
+        //                         ref={this.onRefInput}
+        //                         type="number"
+        //                         value={this.state.value}
+        //                         onChange={this.onChange}
+        //                     />
+        //                     <button type="submit">입력</button>
+        //                 </form>
+        //                 <div>{this.state.result}</div>
+        //             </React.Fragment>
+        //         );
+        //     }
+        // }
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(<div><GuGuDan /></div>, document.querySelector('#root'));
+    </script>
+</body>
+
+</html>

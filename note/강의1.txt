@@ -1,0 +1,37 @@
+* React 사용  이유
+1. Single Page Application 이기 때문에 깜빡임없이 넘어간다. 모바일화면에서도 잘 나오고?
+앱과 비슷한 느낌. Ui/UX 가 좋아진다.
+2. 재사용 컴포넌트( 중복요소 하나로 묶을 수 있다!)
+3. 데이터 화면 일치
+
+
+* setState 는 비동기이다!!
+* setState 할 때 reder 가 다시 된다!!!
+* setState 할 때 render가 다시되기때문에 태그안에 함수를 직접입력하면 함수가 랜더될때마다 새로 생성되기때문에
+함수는 밖에서 선언해주는 것이 좋다.
+
+* 웹팩을 쓰는 이유
+1. 실제로 개발할 때 중복없애주고 console.log 도없앨수있고 수만개의 컴포넌트들을 합쳐서 한 파일로 만들어준다.(페이스북 컴포넌트 2만개래)
+- node 를 알아야해. 웹팩하려면! (node = javascript 실행기)
+
+* node 랑 npm 깔아야해.
+1. 해당 폴더에 들어간다.(지금 열려있는 폴더(=react-webgame))
+2. npm init > package name 을 정한다. 나머지는 다 넘어간다.
+ author 는 내 이름.
+ license 는 MIT << 무슨 뜻?
+ react 랑 react dom 이 필요하다.
+5. npm i react react-dom >> npm이 react 랑 reactdom 을 설치해준다. >> packge.json 에 설치된거 뜬다.
+6. npm i -D webpack webpack-cli >> react 할 때 필요한 webpack 을 설치한다. 웹팩이랑 웹팩cli를 다 설치해야함.
+ -D는 개발용이라는 뜻임.(실제서비스할때에는 웹팩 필요없음.)
+
+ * jsx 와 js 의 차이?
+ - jsx 문법쓸거면 확장자를 jsx 로 써야한다.>> jsx 파일이 있다는건 react 전용 파일이라는 뜻으로 알려주기때문.
+
+ 7. 바벨을 설치한다. 바벨도 개발용으로만 사용하고 실제 배포할때는 사용하지 않음.
+  npm i -D @babel/core @babel/preset-env @babel/preset-react 
+  core : 바벨의 기본적인것들이 들어있음. preset-env : 우리의 브라우저에 맞게 알아서 마법같이 최신문법을 옛날문법으로 바꿔준다.
+  preset-react : jsx 같은것들 지원한다. 
+  8. npm i babel-loader
+  얘는 바벨이랑 웹팩을 연결해준다.
+  9. class 에 state = {} 하는 거를 쓰려면 추가해야하는것:
+  npm i -D @babel/plugin-proposal-class-properties
