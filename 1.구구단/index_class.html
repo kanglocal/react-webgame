@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>구구단</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class GuGuDan extends React.Component {
+            constructor(props) {
+               super(props);
+               this.state = {
+                   first: Math.ceil(Math.random() * 9),
+                   second: Math.ceil(Math.random() * 9),
+                   value: '',
+                   result: '',
+               };
+           }
+
+            onSubmit = (e) => {
+               e.preventDefault();
+               if (parseInt(this.state.value) === this.state.first * this.state.second) {
+                   this.setState((prevState) => {
+                       return {
+                        result: prevState.value + ' 정답',
+                        first: Math.ceil(Math.random() * 9),
+                        second: Math.ceil(Math.random() * 9),
+                        value: '',
+                       }
+                   });
+               } else {
+                   this.setState({
+                       result: '땡',
+                       value: '',
+                   });
+               }
+               this.valueInput.focus();
+           }
+
+           onChange = (e) => {
+               this.setState({ value: e.target.value });
+           }
+        
+           // 변수를 따로 뺀 이유 : onRefInput 함수에서 valuInput 에 c를 넣기 위함.
+           // 의미 : this의 변수인 valuInput = 파라미터로 받은 c(=input) 
+           valueInput;
+           
+           onRefInput = (c) => { this.valueInput = c; }
+
+           render() {
+               console.log("렌더링");
+               // setState 할때마다 reder 함수 실행되는데, render는 여러번 되면 시간이 오래걸린다.
+               // 따라서 최적화할것 생각해야한다
+               return (
+                   <React.Fragment>
+                        <div>{this.state.first} 곱하기 {this.state.second} 는?</div>
+                        <form onSubmit={this.onSubmit}>
+                            <input 
+                                ref={this.onRefInput}
+                                type="number" 
+                                value={this.state.value} 
+                                onChange={this.onChange}
+                            />
+                            <button type="submit">입력</button>
+                        </form>
+                        <div>{this.state.result}</div>
+                    </React.Fragment>
+                );
+            }
+        }
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(<div><GuGuDan /></div>, document.querySelector('#root'));
+    </script>
+</body>
+
+</html>
