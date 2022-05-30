@@ -56,4 +56,4 @@ class WordRelay extends React.Component {
     }
 }
 
-module.exports = WordRelay;// 이 줄을 추가해야 client.jsx 에서 불러올 수 있다.
+module.exports = WordRelay_class;// 이 줄을 추가해야 client.jsx 에서 불러올 수 있다.

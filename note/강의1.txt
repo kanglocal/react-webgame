@@ -40,4 +40,21 @@
   1. 명령어 : npm i react-refresh @pmmmwh/react-refresh-webpack-plugin -D
   2. 개발용서버가 필요해 명령어 : npm i -D webpack-dev-server
 
-test aa
+* require 와 import 차이?
+- require 는 node 의 모듈 시스템이다.
+- { hot }  구조분해로 되어있는 애는 왜 이럴가? : 그냥 구조분해 문법이다. 
+   WordRelay 파일 보면 맨아래에 "module.exports = WordRelay;" 이거 쓰면 client.jsx 에서
+   "const WordRelay = require('./WordRelay_hooks');" 일케 가져다 쓰잖아. module.exports  호환되는게
+   exports default 인데, (exports default WordRlay == module.exports = WordRelay)
+   exports default 로 익스포트된애들은 import 할때도 그냥 변수명으로 import aaa  로 쓰면되고
+   익스포트할때 변수에 넣은애들 예를들어 export const hello = 'hello' 이런애들은 임포트할때 import { hello } 이렇게 해야한다.
+- require 랑 import 랑 호환되는경우도 있다.
+- require = import
+- moule.exports = exports default
+- 엄밀히따지면 export default 랑 module.exports 랑 다른거지만 리액트정도에서는 호환된다고 생각해도된다.
+- module.exports = { hello: 'a'}; = exports hello = 'a'
+- 각각 es2015 문법, commonjs 문법 이라 부른다.
+- node 에서는 require 만 써야함. 그런데 import 써있는부분도 잘 돌아가는 이유는 babel 이 바꿔주기 때문.
+- require : node 거 / import, export : react 거
+- webpack.config.js 는 node 가 돌리기때문에 import 쓰면 안돼. 꼭 const 로 써야한다.
+- clienjsx 는 웹팩의 바벨이 나중에 바꿔주기때문에 import 써도되긴하다.
