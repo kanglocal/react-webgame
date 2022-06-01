@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Try from './Try';
+import Try from './TryClass';
 
 // 숫자 4개를 겹치지않고 랜덤하게 뽑는 함수
 // this 를 안쓰는 함수여서 class 밖에 위치시켰음. 안에 넣어도 된다.
