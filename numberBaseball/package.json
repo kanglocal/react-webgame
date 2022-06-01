@@ -1,5 +1,5 @@
 {
-  "name": "lecture_webpack",
+  "name": "numberbaseball",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,13 +8,12 @@
   },
   "author": "kanglocal",
   "license": "MIT",
-  "dependencies": {
+ "dependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
-  },
+  },  
   "devDependencies": {
     "@babel/core": "^7.18.2",
-    "@babel/plugin-proposal-class-properties": "^7.17.12",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
@@ -22,6 +21,6 @@
     "react-refresh": "^0.13.0",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.9.0"
+    "webpack-dev-server": "^4.9.1"
   }
 }
