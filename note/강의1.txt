@@ -58,3 +58,6 @@
 - require : node 거 / import, export : react 거
 - webpack.config.js 는 node 가 돌리기때문에 import 쓰면 안돼. 꼭 const 로 써야한다.
 - clienjsx 는 웹팩의 바벨이 나중에 바꿔주기때문에 import 써도되긴하다.
+
+
+* 자식들이 다 pureComponent 나 memo이면 부모에도 둘 중 하나를 적용할 수 있다.
