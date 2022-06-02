@@ -1,6 +1,7 @@
 const path = require('path'); 
 const { webpack } = require('webpack');
 const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+//process.env.NODE_ENV = 'production';  // 배포시 필요함.
 
 module.exports = {
     name: 'number-baseball-setting',
