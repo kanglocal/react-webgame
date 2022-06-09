@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useRef, useState, memo } from 'react';
 import Try from './TryHooks';
 
 // 숫자 4개를 겹치지않고 랜덤하게 뽑는 함수
@@ -19,12 +19,14 @@ const NumberBaseballHooks = memo(() => {
     const [value, setValue] = useState('');
     const [answer, setAnswer] = useState(getNumbers());
     const [tries, setTries] = useState([]);
+    const inputEl = useRef(null);
 
     const resetGame = () => {
         alert('게임을 다시 시작합니다!');
         setValue('');
         setAnswer(getNumbers());
         setTries([]);
+        inputEl.current.focus();
     }
 
     const onSubmitForm = (e) => {

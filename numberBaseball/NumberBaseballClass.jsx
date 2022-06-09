@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import Try from './TryClass';
 
 // 숫자 4개를 겹치지않고 랜덤하게 뽑는 함수
@@ -28,8 +28,17 @@ class NumberBaseballClass extends Component {
                     value: '',
                     answer: getNumbers(),
                     tries: [],
-                })
+                });
+        this.inputRef.focus();
     }
+
+    shouldComponenetUpdate(nextProps, nextState, nextContext){
+
+    }
+    // nextContext : context API 에서 다룰것임. context 응용한게 redux.
+    // 간단히 설명 : 
+    // A(부모) -> B(자식) -> C(손자) -> D -> E -> F -> G
+    // A 와 C 의 데이터 주고받기
 
     onSubmitForm = (e) => {
         // const { result, value, answer } = this.state;
@@ -47,6 +56,7 @@ class NumberBaseballClass extends Component {
                 // [...복사할 배열, 추가할 거]
             });
             this.resetGame();
+            this.inputRef.focus();
 
         }else{
             const answerArray = this.state.value.split('').map( (v) => parseInt(v));
@@ -68,6 +78,7 @@ class NumberBaseballClass extends Component {
                         tries: [ ...this.state.tries, { try: this.state.value, result: `${strike} 스트라이크, ${ball} 볼입니다.`}],
                         value: '',
                     });
+                    this.inputRef.focus();
                 }
                 
             }
@@ -81,16 +92,25 @@ class NumberBaseballClass extends Component {
         })
     };
 
+    // 얘를 쓴는 경우? 간단. hooks의 ref와 통일감.
+    // ref 만드는 두번째 방법
+    // inputRef = createRef(); 얘는 current 를 써줘야한다.
+
+    // 얘를 쓰는 경우?  함수여서 ref를 설정할 때 자유도가 조금 있다. 미세하게 조정가능한 장점이 있다.
+    inputRef;
+    onInputRef = (c) => { this.inputRef = c ; };
+
     // state가 바뀔때마다 재실행되는 render()
     render() {
         // const { result, value, tries } = this.state;
         // 위 구문(비구조화할당)을 쓰면, 아래 코드에서 this.state 부분 다 뺄 수 있음.
 
+        // 이 안에서 this.setState({}) 쓰면 안돼 왜냐면 this.setState 실행하면 render가 실행되니까 무한루프됨
         return (
             <>
                 <h1>{ this.state.result }</h1>
                 <form onSubmit = { this.onSubmitForm }>
-                    <input maxLength = { 4 } value = { this.state.value } onChange = { this.onChangeInput } />
+                    <input ref={(c) => {this.onInputRef }} maxLength = { 4 } value = { this.state.value } onChange = { this.onChangeInput } />
                 </form>
                 <div>시도: { this.state.tries.length }</div>
 
