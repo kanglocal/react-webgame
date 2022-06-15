@@ -7,9 +7,45 @@ class ResponseCheckClass extends Component {
         result: [],
     };
 
-    onClickScreen = () => {
+    timeout;
+    
+    // startTime 은 변하는데 state에 넣지 않는 이유 : rendering이 되면 안되기때문!
+    startTime;
+    endTime;
 
-    }
+    onClickScreen = () => {
+        // class 를 사용할 경우, 미리 구조분해를 해두자!
+        // 특히 this.props 랑 this.state
+        const { state, message, reuslt } = this.state;
+        if(state === 'waiting') {
+            this.setState({
+                state: 'ready',
+                message: '초록색이 되면 클릭하세요.',
+            });
+            this.timeout = setTimeout(() => {
+                this.setState({
+                    state: 'now',
+                    message: '지금 클릭',
+                })
+                this.startTime = new Date();
+            }, Math.floor(Math.random() * 1000 ) + 2000); //2~3초 랜덤
+        } else if(state === 'ready') {
+            clearTimeout(this.timeout);
+            this.setState({
+                state: 'waiting',
+                message: '너무 성급하시군요! 초록색이 된 후에 클릭하세요.',
+            })
+        } else if ( state === 'now') { //반응속도 체크
+            this.endTime = new Date();
+            this.setState((prevState) => {
+                return {
+                    state: 'waiting',
+                    message: '클릭해서 시작하세요.',
+                    result: [...prevState.result, this.endTime - this.startTime],
+                };
+            });
+        }
+    };
 
     renderAverage = () => {
         const { result } = this.state; 
