@@ -12,35 +12,50 @@
         <div id="root"></div><!-- 결과: <div id="root"><button>Like</button></div> -->
         <!-- 1번 스크립트는 이렇게하겠다는 계획. 2번스크립트는 실제로 그린다! -->
         <script type="text/babel">
-            const e = React.createElement;
+            // 1. 맨처음 작성한코드(this 문제로 이제 사용하지않는다.)
+            // const e = React.createElement;
+            // class LikeButton extends React.Component {
+            //     constructor(props){
+            //         super(props);
+            //         // 변할여지가 있는 애들 담는 곳. = state
+            //         this.state = {
+            //             liked: false,
+            //         }
+            //     }
 
-            class LikeButton extends React.Component {
-                constructor(props){
-                    super(props);
-                    // 변할여지가 있는 애들 담는 곳. = state
-                    this.state = {
-                        liked: false,
-                    }
+            //     render(){
+            //         return <button 
+            //                     type="submit" 
+            //                     onClick={ () => { this.setState({ liked: true})} }>
+            //                     {this.state.liked ? 'Liked': 'Like'}
+            //                 </button>;
+            //                 // JSX : javascript + XML
+
+            //                 // return e('button',{ onClick: () => { this.setState({ liked: true }) }, type: 'submit' },
+            //                 // this.state.liked === true ? 'Liked' : 'like'); 
+            //                 // // 자바스크립트 결과 :  <button onClick="() => { console.log('clicked') }">Like</button>
+            //     }
+            // }
+
+            // 2. 함수 컴포넌트
+            // 장점 : this 안써도된다.
+            // 가장 깔끔한 코드는 안짜는거다..?
+            function LikeButton() {
+                const [Liked, setLiked] = React.useState(false); // 구조분해!! 배열이다.
+                if(Liked) {
+                    return 'You liked this';
                 }
-
-                render(){
-                    return <button 
-                                type="submit" 
-                                onClick={ () => { this.setState({ liked: true})} }>
-                                {this.state.liked ? 'Liked': 'Like'}
-                            </button>;
-                            // JSX : javascript + XML
-
-                            // return e('button',{ onClick: () => { this.setState({ liked: true }) }, type: 'submit' },
-                            // this.state.liked === true ? 'Liked' : 'like'); 
-                            // // 자바스크립트 결과 :  <button onClick="() => { console.log('clicked') }">Like</button>
-                }
+                return (
+                    <button onClick={() => {setLiked(true);}}>Like</button>
+                );
             }
+
         </script>
         <script type="text/babel">
             // ReactDom 이 화면에 실제로 렌더링 해주는 것.
             // ReactDOM.render(e(LikeButton), document.querySelector('#root'));
             ReactDOM.render(<div><LikeButton/><LikeButton/><LikeButton/><LikeButton/></div>, document.querySelector('#root'));
+            // ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton />);
         </script>
     </body>
 </html>

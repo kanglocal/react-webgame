@@ -47,11 +47,22 @@ class ResponseCheckClass extends Component {
         }
     };
 
+    onReset = () => {
+        this.setState({
+            result: [],
+        });
+    };
+
+    // 이렇게 함수로 하는거보다는 새로운 컴포넌트로 하는게 더 좋아.
+    // 최적화 하려면 저 <> ~ </> 부분을 퓨어컴포넌트로 바꿔줘야해
     renderAverage = () => {
         const { result } = this.state; 
         return result.length === 0 
                 ? null 
-                : <div>평균 시간: {result.reduce((a, c) => a + c) / result.length}ms</div>
+                : <>
+                    <div>평균 시간: {result.reduce((a, c) => a + c) / result.length}ms</div>
+                    <button onClick= {this.onReset}>리셋</button>
+                  </>
     }
     render() {
         const {state, message} = this.state;

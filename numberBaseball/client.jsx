@@ -7,7 +7,8 @@ const ReactDom = require('react-dom/client');
 // import NumberBaseball from './NumberBaseballClass';
 // import NumberBaseball from './NumberBaseballHooks';
 // import NumberBaseball from './RenderTest';
-import ResponseCheckClass from './ResponseCheckClass';
+// import ResponseCheckClass from './ResponseCheckClass';
+import ResponseCheckClass from './ResponseCheckHooks';
 
 // const Hot = hot(ResponseCheckClass);
 

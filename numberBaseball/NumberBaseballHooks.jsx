@@ -76,6 +76,16 @@ const NumberBaseballHooks = memo(() => {
             <div>시도: { tries.length }</div>
 
             <ul>
+                {/* return 안에 반복문 사용하기. 즉시 실행 함수를 만들어서 그 속에서 반복문을 사용한다.
+                    배열에 jsx를 담아서 리턴한다.  */}
+                {/* {
+                    (() => {
+                        for(let i=0; i < tries.length; i ++) {
+                            array.push(<Try key={`${i + 1} 차 시도 :`} tryInfo = { v } index = { i } />);
+                        }
+                        return array;
+                    })()
+                } */}
                 {tries.map( (v, i) => {
                     return (
                         <Try key={`${i + 1} 차 시도 :`} tryInfo = { v } index = { i } />
