@@ -5,17 +5,11 @@ const ReactDom = require('react-dom/client');
 // const NumberBaseball = require('./NumberBaseballClass');
 
 // import NumberBaseball from './NumberBaseballClass';
-// import NumberBaseball from './NumberBaseballHooks';
-// import NumberBaseball from './RenderTest';
-// import ResponseCheckClass from './ResponseCheckClass';
-import ResponseCheckClass from './ResponseCheckHooks';
+import NumberBaseball from './NumberBaseballHooks';
 
-// const Hot = hot(ResponseCheckClass);
-
-// ReactDom.render(<ResponseCheckClass />, document.querySelector('#root'));
 
 const rootNode = document.querySelector('#root');
 
 ReactDom.createRoot(rootNode).render(
-    <ResponseCheckClass/>
+    <NumberBaseball/>
 )

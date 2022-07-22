@@ -17,7 +17,9 @@ const getNumbers = () => {
 const NumberBaseballHooks = memo(() => {
     const [result, setResult] = useState('');
     const [value, setValue] = useState('');
-    const [answer, setAnswer] = useState(getNumbers());
+
+    // lazy init : 초기화할 때 함수를 넣는다.
+    const [answer, setAnswer] = useState(getNumbers);
     const [tries, setTries] = useState([]);
     const inputEl = useRef(null);
 
@@ -40,14 +42,14 @@ const NumberBaseballHooks = memo(() => {
             setTries((prevTries) => (
                 [...prevTries, { try: value, result: '홈런!'}]
             ));
-            this.resetGame();
+            resetGame();
         }else{
             const answerArray = value.split('').map( (v) => parseInt(v));
             let strike = 0;
             let ball = 0;
             if(tries.length >= 9){ // 10번 이상 틀렸을 때
                 setResult(`10번 넘게 틀려서 실패! 답은 ${answer.join(',')} 였습니다!`);
-                this.resetGame();
+                resetGame();
             }else{
                 for(let i = 0; i < 4; i += 1){
 

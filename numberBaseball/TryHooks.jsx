@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { useState, memo } from 'react';
 // hooks 의 성능 최적화 = memo. component 를 memo로 감싸준다.
 
 //const Try = ( props ) => {
@@ -8,7 +8,7 @@ const Try = memo(( props ) => {
 
     
     // 부모한테받은 props 를 state 로 넣기.
-    const [ result, setResult ] = useState(tryInfo.result);
+    const [ result, setResult ] = useState(props.tryInfo.result);
 
     const onClick = () => {
         setResult('1');

@@ -61,3 +61,16 @@
 
 
 * 자식들이 다 pureComponent 나 memo이면 부모에도 둘 중 하나를 적용할 수 있다.
+
+
+* 컴포넌트의 라이프 싸이클!!
+client.jsx 에서 불려와서 컴포넌트가 렌더링 되잖아, 이 때 컴포넌트가 돔에 갖다 붙는 순간이 있다.
+이 순간에 특정 동작을 할 수 있다.
+렌더함수가 실행되면 리액트가 jsx를 돔에 붙이는데 이 순간에 특정동작을 할 수 있게 할수있다.
+
+1) class의 경우 : constructor -> render -> ref -> componentDidMount -> (setState/props 바뀔 때 -> shouldComponentUpdate값이 true -> 
+render -> componentDidUpdate) -> 부모가 나를 없앴을 떄 -> componentWillunmount -> 소멸
+
+* customHook
+훅들을 직접 만든다!!
+
