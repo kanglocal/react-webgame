@@ -1,0 +1,1 @@
+reducer 와 context 를 사용한 예제임.

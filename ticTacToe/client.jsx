@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDom from 'react-dom/client';
 // import { hot } from 'react-hot-loader/root';
 
-import LottoClass from './LottoClass';
-import LottoHooks from './LottoHooks';
+import TicTacToe from './TicTacToe.jsx';
+
 
 // const Hot = hot(rockScissorsPaper);
 
@@ -12,5 +12,5 @@ import LottoHooks from './LottoHooks';
 const rootNode = document.querySelector('#root');
 
 ReactDom.createRoot(rootNode).render(
-    <LottoHooks/>
+    <TicTacToe/>
 )
