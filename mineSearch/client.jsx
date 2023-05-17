@@ -1,16 +1,17 @@
-import React from 'react';
-import ReactDom from 'react-dom/client';
+import React from "react";
+import ReactDom from "react-dom/client";
 // import { hot } from 'react-hot-loader/root';
 
-import MineSearch from './MineSearch.jsx';
-
+import MineSearch from "./MineSearch.jsx";
+import Test from "./test_parent.jsx";
 
 // const Hot = hot(rockScissorsPaper);
 
 // ReactDom.render(<Hot />, document.querySelector('#root'));
 
-const rootNode = document.querySelector('#root');
+const rootNode = document.querySelector("#root");
 
 ReactDom.createRoot(rootNode).render(
-    <MineSearch/>
-)
+  // <MineSearch/>
+  <Test />
+);
